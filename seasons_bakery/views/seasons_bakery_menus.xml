@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="seasons_bakery_root_menu"
+              name="Seasons Bakery"
+              sequence="1"/>
+
+    <menuitem id="menu_seasons_branch_root"
+              name="Branches"
+              parent="seasons_bakery_root_menu"
+              action="action_seasons_branch"
+              sequence="2"/>
+
+    <menuitem id="menu_branch_region_root"
+              name="Regions"
+              parent="seasons_bakery_root_menu"
+              action="action_branch_region"
+              sequence="3"/>
+
+    <menuitem id="menu_branch_township_root"
+              name="Townships"
+              parent="seasons_bakery_root_menu"
+              action="action_branch_township"
+              sequence="4"/>
+
+</odoo>

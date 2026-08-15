@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_student_admin,school.student,model_school_student,school_management.group_school_admin,1,1,1,1
+access_school_student_teacher,school.student,model_school_student,school_management.group_teacher,1,1,0,0
+access_res_partner_admin,res.partner,model_res_partner,school_management.group_school_admin,1,1,1,1
+access_res_partner_teacher,res.partner,model_res_partner,school_management.group_teacher,1,1,0,0
+access_school_class_admin,school.class,model_school_class,school_management.group_school_admin,1,1,1,1
+access_school_class_teacher,school.class,model_school_class,school_management.group_teacher,1,1,0,0
+access_school_subject_admin,school.subject,model_school_subject,school_management.group_school_admin,1,1,1,1
+access_school_subject_teacher,school.subject,model_school_subject,school_management.group_teacher,1,1,0,0
+access_school_teacher_admin,school.teacher.admin,model_school_teacher,school_management.group_school_admin,1,1,1,1
+access_school_teacher_teacher,school.teacher.teacher,model_school_teacher,school_management.group_teacher,1,1,0,0

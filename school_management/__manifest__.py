@@ -1,0 +1,26 @@
+{
+    "name": "School Management",
+    "author": "KSL",
+    "version":"19.0.1.0.0",
+    "category": "School Management",
+    "summary": "school management for students",
+    "depends": [
+        "base", "contacts",
+    ],
+    "data": [
+        "security/school_security.xml",
+        "security/ir.model.access.csv",
+        "views/student_views.xml",
+        "views/teacher_views.xml",
+        "views/subject_views.xml",
+        "views/class_views.xml",
+        "data/ir_sequence.xml",
+        "views/res_partner_views.xml",
+        "views/student_menu.xml",
+
+    ],
+    "installable":True,
+    "application":True,
+    "license": "LGPL-3",
+
+}

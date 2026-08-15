@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_seasons_branch,seasons.branch,model_seasons_branch,,1,1,1,1
+access_branch_region,branch.region,model_branch_region,,1,1,1,1
+access_branch_township,branch.township,model_branch_township,,1,1,1,1
