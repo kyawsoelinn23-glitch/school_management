@@ -8,3 +8,4 @@ class SchoolSubject(models.Model):
     name = fields.Char(string="Subject Name", required=True)
     code = fields.Char(string="Subject Code")
     description = fields.Text(string="Description")
+    teacher_ids = fields.One2many('school.teacher', 'subject_id', string="Teachers")

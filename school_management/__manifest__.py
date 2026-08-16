@@ -15,6 +15,8 @@
         "views/teacher_views.xml",
         "views/subject_views.xml",
         "views/class_views.xml",
+        "reports/student_card_report.xml",
+        "reports/student_card_template.xml",
         "data/ir_sequence.xml",
         "views/res_partner_views.xml",
         "views/student_menu.xml",

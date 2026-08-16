@@ -22,6 +22,9 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button string="Print Student Card" type="object" name="action_print_student_card" class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
