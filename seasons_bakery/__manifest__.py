@@ -5,7 +5,6 @@
     "category": "Seasons Bakery",
     "depends": ["base", "mail", "hr"],
     "data": [
-
         "security/ir.model.access.csv",
         "views/seasons_branch_views.xml",
         "views/branch_region_views.xml",

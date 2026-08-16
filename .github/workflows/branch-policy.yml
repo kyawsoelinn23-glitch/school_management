@@ -1,0 +1,66 @@
+name: Branch Policy
+
+on:
+  workflow_call:
+    inputs:
+      source_branch:
+        required: true
+        type: string
+
+      target_branch:
+        required: true
+        type: string
+
+jobs:
+  validate-branch-flow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate Branch Policy
+        env:
+          SOURCE_BRANCH: ${{ inputs.source_branch }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Source: ${SOURCE_BRANCH}"
+          echo "Target: ${TARGET_BRANCH}"
+
+          case "${TARGET_BRANCH}" in
+
+            DEV)
+              if [[ ! "${SOURCE_BRANCH}" =~ ^dev_ ]]; then
+                echo "::error::Only dev_* branches can merge into DEV"
+                exit 1
+              fi
+              ;;
+
+            STG)
+              if [[ "${SOURCE_BRANCH}" != "DEV" ]]; then
+                echo "::error::Only DEV can merge into STG"
+                exit 1
+              fi
+              ;;
+
+            UAT)
+              if [[ "${SOURCE_BRANCH}" != "STG" ]]; then
+                echo "::error::Only STG can merge into UAT"
+                exit 1
+              fi
+              ;;
+
+            PROD)
+              if [[ "${SOURCE_BRANCH}" != "UAT" ]]; then
+                echo "::error::Only UAT can merge into PROD"
+                exit 1
+              fi
+              ;;
+
+            *)
+              echo "::error::Unsupported target branch"
+              exit 1
+              ;;
+          esac
+
+          echo "Branch policy passed"

@@ -1,0 +1,67 @@
+target-version = "py312"
+
+[lint]
+preview = true
+external = ["OLS"]
+
+select = [
+    "BLE",
+    "C",
+    "COM",
+    "E",
+    "EM",
+    "EXE",
+    "F",
+    "FA",
+    "FLY",
+    "G",
+    "I",
+    "ICN",
+    "INT",
+    "ISC",
+    "LOG",
+    "PGH",
+    "PIE",
+    "PLC",
+    "PLE",
+    "PLW",
+    "PYI",
+    "RET",
+    "RUF",
+    "SIM",
+    "SLOT",
+    "T",
+    "TC",
+    "TID",
+    "TRY",
+    "UP",
+    "W",
+    "YTT",
+]
+
+ignore = [
+    "line-too-long",  # line too long
+    "whitespace-before-punctuation",  # whitespace before ':'
+    "unused-import",  # module imported but unused
+    "undefined-local-with-import-star",  # 'from module import *' used; unable to detect undefined names
+    "undefined-local-with-import-star-usage",  # name may be undefined, or defined from star imports: module
+    "missing-trailing-comma",
+    "import-private-name",
+]
+
+[lint.per-file-ignores]
+"**/__init__.py" = [
+    "unused-import",  # module imported but unused
+]
+
+[lint.isort]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+known-first-party = ["odoo"]
+known-local-folder = ["odoo.addons"]
