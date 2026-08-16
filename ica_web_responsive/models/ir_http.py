@@ -19,7 +19,7 @@ class IrHttp(models.AbstractModel):
                 return super().color_scheme()
 
             if (
-                    user_scheme := user.res_users_settings_id.color_scheme
+                user_scheme := user.res_users_settings_id.color_scheme
             ) and user_scheme in ("light", "dark"):
                 return user_scheme
 
