@@ -10,6 +10,7 @@
         "views/seasons_branch_views.xml",
         "views/branch_region_views.xml",
         "views/branch_township_views.xml",
+
         "views/employee_views.xml",
         "views/seasons_bakery_menus.xml",
     ],
