@@ -1,0 +1,97 @@
+repository:
+  name: odoo19-project
+
+default_branch: PROD
+
+branches:
+  DEV:
+    description: Development Branch
+    protected: true
+    allow_direct_push: false
+    required_reviews: 1
+    source:
+      - feature/*
+      - fix/*
+      - hotfix/*
+
+  STG:
+    description: Staging Branch
+    protected: true
+    allow_direct_push: false
+    required_reviews: 1
+    source:
+      - DEV
+
+  UAT:
+    description: User Acceptance Testing Branch
+    protected: true
+    allow_direct_push: false
+    required_reviews: 1
+    source:
+      - STG
+
+  PROD:
+    description: Production Branch
+    protected: true
+    allow_direct_push: false
+    required_reviews: 2
+    source:
+      - UAT
+
+naming_convention:
+  feature: "feature/<module-name>"
+  fix: "fix/<issue-name>"
+  hotfix: "hotfix/<issue-name>"
+
+workflow:
+  - feature/* -> DEV
+  - DEV -> STG
+  - STG -> UAT
+  - UAT -> PROD
+
+pull_request_rules:
+  require_pull_request: true
+  require_approval: true
+  require_passing_ci: true
+  dismiss_stale_reviews: true
+
+quality_checks:
+  - ruff check .
+  - ruff format --check .
+  - manifest validation
+  - unit tests
+
+deployment:
+  DEV:
+    environment: development
+
+  STG:
+    environment: staging
+
+  UAT:
+    environment: uat
+
+  PROD:
+    environment: production
+
+hotfix_flow:
+  - PROD -> hotfix/*
+  - hotfix/* -> PROD
+  - hotfix/* -> UAT
+  - hotfix/* -> STG
+  - hotfix/* -> DEV
+
+merge_policy:
+  DEV: squash
+  STG: squash
+  UAT: squash
+  PROD: merge
+
+rules:
+  - No direct push to DEV
+  - No direct push to STG
+  - No direct push to UAT
+  - No direct push to PROD
+  - All changes must go through Pull Requests
+  - CI must pass before merge
+  - Production releases come only from PROD
