@@ -40,14 +40,13 @@ select = [
 ]
 
 ignore = [
-    "line-too-long",
-    "import-private-name",
+    "E501",
+    "PLC0414",
 ]
 
 [lint.per-file-ignores]
 "**/__init__.py" = [
-    "unused-import",
-    "import-private-name",
+    "F401",
 ]
 
 [lint.isort]
