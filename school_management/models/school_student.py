@@ -7,7 +7,7 @@ class SchoolStudent(models.Model):
 
     name = fields.Char(string="Student Name", required=True)
     student_id = fields.Char(
-        string="Student ID", readonly=True, default=lambda self: _("New"), copy=False
+        string="Student ID", readonly=True, default=lambda self: _("New"), copy=False,
     )
 
     class_id = fields.Many2one("school.class", string="Class")

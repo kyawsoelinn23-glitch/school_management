@@ -7,7 +7,7 @@ class SchoolTeacher(models.Model):
 
     name = fields.Char(string="Teacher Name", required=True)
     employee_id = fields.Char(
-        string="Employee ID", readonly=True, default=lambda self: _("New")
+        string="Employee ID", readonly=True, default=lambda self: _("New"),
     )
     phone = fields.Char(string="Phone Number", required=True)
     email = fields.Char(string="Email Address", required=True)
