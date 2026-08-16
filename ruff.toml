@@ -40,13 +40,17 @@ select = [
 ]
 
 ignore = [
-    "E501",
-    "PLC0414",
+    "line-too-long",  # line too long
+    "whitespace-before-punctuation",  # whitespace before ':'
+    "unused-import",  # module imported but unused
+    "undefined-local-with-import-star",  # 'from module import *' used; unable to detect undefined names
+    "undefined-local-with-import-star-usage",  # name may be undefined, or defined from star imports: module
+    "import-private-name",
 ]
 
 [lint.per-file-ignores]
 "**/__init__.py" = [
-    "F401",
+    "unused-import",  # module imported but unused
 ]
 
 [lint.isort]

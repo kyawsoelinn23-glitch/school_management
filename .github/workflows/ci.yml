@@ -35,7 +35,7 @@ jobs:
       - name: Install Ruff
         run: |
           python -m pip install --upgrade pip
-          pip install "ruff==0.15.0"
+          pip install ruff
 
       - name: Show Ruff Version
         run: ruff --version
