@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import fields, models
+
 
 class BranchTownship(models.Model):
     _name = 'branch.township'

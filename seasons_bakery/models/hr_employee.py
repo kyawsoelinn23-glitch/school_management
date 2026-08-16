@@ -1,8 +1,7 @@
-from odoo import api, fields, models
-
+from odoo import fields, models
 
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    branch_ids = fields.Many2many('seasons.branch',string='Branches')
+    branch_ids = fields.Many2many('seasons.branch', string='Branches')

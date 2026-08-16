@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SeasonsBranch(models.Model):
@@ -13,6 +13,4 @@ class SeasonsBranch(models.Model):
 
     region_id = fields.Many2one('branch.region', string='Region')
     township_id = fields.Many2one('branch.township', string='Township')
-    employee_ids = fields.Many2many('hr.employee',string='Employees')
-
-
+    employee_ids = fields.Many2many('hr.employee', string='Employees')

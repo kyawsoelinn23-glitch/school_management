@@ -1,7 +1,7 @@
 {
     "name": "School Management",
     "author": "KSL",
-    "version":"19.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "School Management",
     "summary": "school management for students",
     "depends": [
@@ -19,8 +19,8 @@
         "views/student_menu.xml",
 
     ],
-    "installable":True,
-    "application":True,
+    "installable": True,
+    "application": True,
     "license": "LGPL-3",
 
 }
