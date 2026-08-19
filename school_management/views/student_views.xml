@@ -11,8 +11,9 @@
                 <field name="class_id" optional="show"/>
                 <field name="gender"/>
                 <field name="phone"/>
+                <field name="email"/>
                 <field name="subject_ids" widget="many2many_tags" optional="hide"/>
-                <field name="active"/>
+                <field name="active" optional="hide"/>
             </list>
         </field>
     </record>
