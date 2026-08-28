@@ -31,3 +31,27 @@ class SchoolStudentsAPI(http.Controller):
                 "data": student_list
             }),headers=[("Content-Type", "application/json")],
         )
+
+
+    @http.route("/school/api/students/create", type="http", auth="user", methods=["POST"], csrf=False)
+    def create_student(self, **kw):
+        body = json.loads(request.httprequest.data)
+        student = request.env['school.student'].sudo().create(body)
+        return request.make_response(
+            json.dumps({
+                "success": True,
+                "data": {
+                    'id': student.id,
+                    'name': student.name,
+                    'student_id': student.student_id,
+                    'class_id': student.class_id.name if student.class_id else None,
+                    'subject_ids': [subject.name for subject in student.subject_ids],
+                    'gender': student.gender,
+                    'date_of_birth': Date.to_string(student.date_of_birth) if student.date_of_birth else None,
+                    'phone': student.phone,
+                    'email': student.email,
+                    'address': student.address,
+                    'active': student.active,
+                }
+            }),headers=[("Content-Type", "application/json")],
+        )
