@@ -15,7 +15,10 @@ class SchoolStudentsAPI(http.Controller):
                 'id': student.id,
                 'name': student.name,
                 'student_id': student.student_id,
-                'class_id': student.class_id.name if student.class_id else None,
+                'class': {
+                    'id': student.class_id.id,
+                    'name': student.class_id.name
+                } if student.class_id else None,
                 'subject_ids': [subject.name for subject in student.subject_ids],
                 'gender': student.gender,
                 'date_of_birth': Date.to_string(student.date_of_birth) if student.date_of_birth else None,
@@ -44,7 +47,10 @@ class SchoolStudentsAPI(http.Controller):
                     'id': student.id,
                     'name': student.name,
                     'student_id': student.student_id,
-                    'class_id': student.class_id.name if student.class_id else None,
+                    'class': {
+                        'id': student.class_id.id,
+                        'name': student.class_id.name
+                    } if student.class_id else None,
                     'subject_ids': [subject.name for subject in student.subject_ids],
                     'gender': student.gender,
                     'date_of_birth': Date.to_string(student.date_of_birth) if student.date_of_birth else None,
