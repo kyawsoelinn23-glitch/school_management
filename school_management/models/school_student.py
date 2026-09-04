@@ -36,3 +36,7 @@ class SchoolStudent(models.Model):
     #         vals["student_id"] = self.env["ir.sequence"].next_by_code("school.student")
     #     res = super().create(vals_list)
     #     return res
+
+
+    def action_print_student_card(self):
+        return self.env.ref('school_management.action_report_student_id_card').report_action(self)
