@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <template id="report_student_id_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="student">
+                <div class="page">
+                    <!-- Header -->
+                    <div style="text-align:center;">
+                        <img t-if="res_company.logo"
+                             t-att-src="image_data_uri(res_company.logo)"
+                             style="height:70px;"/>
+
+                        <h1 style="color:#0b2c66;">
+                            PRIVATE INTERNATIONAL SCHOOL
+                        </h1>
+                        <hr style="border:1px solid #0b2c66;"/>
+                        <h2 style="color:blue; font-family:bold;">
+                            STUDENT ID CARD
+                        </h2>
+                    </div>
+
+                    <!-- Student Information -->
+                    <div style="
+                        border:1px solid #2c3e50;
+                        padding:15px;
+                        margin-bottom:5px;
+                    ">
+                        <table style="width:100%;">
+                            <tr>
+                                <td width="25%">
+                                    <strong>Student Name</strong>
+                                </td>
+                                <td width="5%">:</td>
+                                <td>
+                                    <span t-field="student.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Student ID</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.student_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Gender</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.gender"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Class</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.class_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Subject</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.subject_ids"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Date of Birth</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.date_of_birth"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Phone Number</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.phone"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Email</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Address</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Active</strong>
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <span t-field="student.active"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Subjects Section -->
+                    <h3 style="text-align:center; margin-bottom:10px; color:White; background-color:#0b2c66; padding:10px;">
+                        SUBJECTS
+                    </h3>
+                    <table style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="background-color:grey">
+                                <th style="padding:8px; border:1px solid black; color:white;">
+                                    No
+                                </th>
+                                <th style="padding:8px; border:1px solid black; color:white;">
+                                    Subject Code
+                                </th>
+                                <th style="padding:8px; border:1px solid black; color:white;">
+                                    Subject Name
+                                </th>
+                                <th style="padding:8px; border:1px solid black; color:white;">
+                                    Teacher
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr t-foreach="student.subject_ids" t-as="subject">
+                                <td style="padding:5px; border:1px solid black; text-align:center;">
+                                    <span t-esc="subject_index + 1"/>
+                                </td>
+                                <td style="padding:5px; border:1px solid black; text-align:center;">
+                                    <span t-esc="subject.code"/>
+                                </td>
+                                <td style="padding:5px; border:1px solid black; text-align:center;">
+                                    <span t-esc="subject.name"/>
+                                </td>
+                                <!--<t t-foreach="subject.teacher_ids" t-as="teacher">-->
+                                <!--    <span t-esc="teacher.name"/><br/>-->
+                                <td style="padding:5px; border:1px solid black; text-align:center;">
+                                    <span t-esc="', '.join(subject.teacher_ids.mapped('name'))"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Signature Area -->
+                    <div style="margin-top:60px;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align:center;width:50%;">
+                                    ______________________ <br/>
+                                    School Principal
+                                </td>
+                                <td style="text-align:center;width:50%;">
+                                    ______________________ <br/>
+                                    Authorized Sign
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <template id="library_borrow_receipt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs"
+               t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 style="text-align: center; margin-bottom: 10px; color: white; font-size: 30px; font-weight: bold; background: #2c2b2b; padding: 10px;">
+                            Book Borrowing Receipt
+                        </h2>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Reference</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Member</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.member_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Book</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.book_id.book_name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Borrow Date</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.borrow_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Due Date</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.due_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">
+                                    <strong>Status</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.state"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -17,8 +17,11 @@ class SchoolTeacher(models.Model):
     subject_id = fields.Many2one("school.subject", string="Subjects")
     active = fields.Boolean(string="Active", default=True)
 
+
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             vals["employee_id"] = self.env["ir.sequence"].next_by_code("school.teacher")
         return super().create(vals_list)
+
