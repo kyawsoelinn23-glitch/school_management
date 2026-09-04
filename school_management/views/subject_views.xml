@@ -10,6 +10,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="description"/>
+                <field name="teacher_ids" widget="many2many_tags" optional="show"/>
             </list>
         </field>
     </record>
@@ -22,9 +23,14 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="description"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="teacher_ids" widget="many2many_tags"/>
+                            <field name="description"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
