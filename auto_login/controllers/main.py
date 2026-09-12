@@ -4,7 +4,7 @@ from odoo.http import request
 
 class AutoLogin(http.Controller):
 
-    @http.route('/autologin', auth='public', type='http')
+    @http.route('/', auth='public', type='http', website=True)
     def auto_login(self, **kw):
 
         credential = {
