@@ -21,7 +21,6 @@ spec:
     spec:
       containers:
       - name: odoo
-
         image: odoo:19
 
         ports:

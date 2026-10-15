@@ -205,6 +205,11 @@ Deployment Check
 kubectl get deployment -n odoo
 
 
+odoo custom_addons
+====================
+kubectl exec -it -n odoo deploy/odoo -- ls -la /mnt/extra-addons
+
+
 kubectl exec -it -n odoo deploy/postgres -- psql -U postgres -d postgres
 
 CREATE ROLE odoo
