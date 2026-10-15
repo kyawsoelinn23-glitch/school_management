@@ -136,7 +136,6 @@ Database Uninstall
 helm uninstall odoo -n odoo
 kubectl delete pvc postgres-pvc -n odoo
 kubectl delete namespace odoo
-kubectl create namespace odoo
 kubectl delete pod -n odoo -l app=postgres
 helm install odoo . -n odoo
 
