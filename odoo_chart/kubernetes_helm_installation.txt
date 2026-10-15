@@ -81,13 +81,10 @@ sudo ss -tulpn
 sudo kubectl get pods -A
 helm lint .
 helm template .
+
 odoo create
 ===============
 helm install odoo . --create-namespace -n odoo
-error
-=====
-kubectl delete pod -n odoo --all
-
 
 sudo kubectl get all -n odoo
 
@@ -132,6 +129,10 @@ Container Service
 ========================
 kubectl exec -it -n odoo deployment/odoo -- bash
 ping postgres-service
+
+Deployment Check
+=======================
+kubectl get deployment -n odoo
 
 
 
