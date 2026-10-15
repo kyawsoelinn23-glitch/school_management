@@ -84,7 +84,16 @@ helm template .
 odoo create
 ===============
 helm install odoo . --create-namespace -n odoo
+error
+=====
+kubectl delete pod -n odoo --all
+
+
 sudo kubectl get all -n odoo
+helm upgrade odoo . -n odoo
+kubectl get pods -n odoo
+kubectl get svc -n odoo
+
 
 
 
