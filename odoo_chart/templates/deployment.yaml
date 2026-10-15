@@ -46,7 +46,8 @@ spec:
               mountPath: /var/lib/odoo
 
             - name: odoo-config
-              mountPath: /etc/odoo
+              mountPath: /etc/odoo/odoo.conf
+              subPath: odoo.conf
 
       volumes:
         - name: odoo-data

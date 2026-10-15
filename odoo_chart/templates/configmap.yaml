@@ -1,5 +1,4 @@
 # Odoo Config
-
 apiVersion: v1
 kind: ConfigMap
 
@@ -7,7 +6,6 @@ metadata:
   name: odoo-config
 
 data:
-
   odoo.conf: |
     [options]
     db_host = postgres-service
