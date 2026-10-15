@@ -15,7 +15,7 @@ ingress:
   host: erp.kyawsoelinn.com
 
 postgresql:
-  host: postgres-rds.amazonaws.com
+  host: postgres-service
   user: odoo
   password: adminpassword
 

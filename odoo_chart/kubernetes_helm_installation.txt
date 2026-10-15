@@ -81,8 +81,18 @@ sudo ss -tulpn
 sudo kubectl get pods -A
 helm lint .
 helm template .
-sudo kubectl create namespace odoo
-kubectl create namespace odoo
+odoo create
+===============
+helm install odoo . --create-namespace -n odoo
+sudo kubectl get all -n odoo
+
+
+
+
+
+
+
+
 
 Helm Install (Windows)
 =========================
