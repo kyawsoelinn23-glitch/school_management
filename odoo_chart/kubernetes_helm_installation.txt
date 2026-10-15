@@ -90,9 +90,45 @@ kubectl delete pod -n odoo --all
 
 
 sudo kubectl get all -n odoo
+
+Upgrade
+============
 helm upgrade odoo . -n odoo
+
+odoo run
+==========
 kubectl get pods -n odoo
+
+odoo/postgres -service
+=======================
 kubectl get svc -n odoo
+
+odoo-ingress
+==============
+kubectl get ingress -n odoo
+
+Delete
+=========
+kubectl delete pod -n odoo -l app=postgres
+
+New
+======
+kubectl get pods -n odoo -w
+
+Check
+=========
+kubectl get pvc -n odoo
+
+Odoo Deployment Restart
+=================================
+kubectl rollout restart deployment odoo -n odoo
+
+Container Service
+========================
+kubectl exec -it -n odoo deployment/odoo -- bash
+ping postgres-service
+
+
 
 
 
