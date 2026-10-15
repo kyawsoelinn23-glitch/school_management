@@ -10,7 +10,7 @@ spec:
   ingressClassName: traefik  # SSL/TLS =>> HTTP/HTTPS
 
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: 13.215.203.40
       http:
         paths:
           - path: /
