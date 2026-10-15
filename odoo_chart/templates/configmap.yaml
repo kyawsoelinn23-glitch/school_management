@@ -1,6 +1,6 @@
-#Odoo Config
-apiVersion: v1
+# Odoo Config
 
+apiVersion: v1
 kind: ConfigMap
 
 metadata:
@@ -8,6 +8,9 @@ metadata:
 
 data:
 
-  db_host: postgres-rds.amazonaws.com
-
-  db_port: "5432"
+  odoo.conf: |
+    [options]
+    db_host = postgres-service
+    db_port = 5432
+    db_user = odoo
+    db_password = adminpassword
