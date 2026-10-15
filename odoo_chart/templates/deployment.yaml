@@ -4,42 +4,28 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: {{ .Values.appName }}
+  name: odoo
 
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
 
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
+      app: odoo
 
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}
+        app: odoo
 
     spec:
       containers:
+      - name: odoo
 
-      - name: {{ .Values.appName }}
-
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: odoo:19
 
         ports:
         - containerPort: 8069
-
-        env:
-        - name: HOST
-          value: "{{ .Values.postgresql.host }}"
-
-        - name: USER
-          value: "{{ .Values.postgresql.user }}"
-
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: odoo-secret
-              key: db-password
 
         volumeMounts:
         - name: odoo-data
@@ -50,6 +36,7 @@ spec:
           subPath: odoo.conf
 
       volumes:
+
       - name: odoo-data
         persistentVolumeClaim:
           claimName: odoo-pvc

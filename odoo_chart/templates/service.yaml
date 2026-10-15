@@ -10,7 +10,7 @@ spec:
     app: odoo
 
   ports:
-  - port: 80
-    targetPort: 8069
+    - port: 80
+      targetPort: 8069
 
   type: ClusterIP

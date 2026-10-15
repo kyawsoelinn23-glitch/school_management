@@ -7,21 +7,17 @@ image:
   repository: odoo
   tag: "19"
 
-service:
-  port: 80
-
 postgresql:
-  host: postgres-service
-  port: 5432
+  adminUser: postgres
+  adminPassword: postgres
+
+  dbName: odoo
   user: odoo
   password: odoo
 
 storage:
-  size: 20Gi
+  odoo: 20Gi
+  postgres: 10Gi
 
-postgresStorage:
-  size: 10Gi
-
-#ingress:
-#  enabled: true
-#  host: ""
+ingress:
+  enabled: true
