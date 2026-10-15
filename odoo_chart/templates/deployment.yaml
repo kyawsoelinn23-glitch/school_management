@@ -47,7 +47,7 @@ spec:
         configMap:
           name: odoo-config
 
-      - name: custom-addons
+      - name: odoo-addons
         hostPath:
           path: /home/ubuntu/odoo_chart/school_management
           type: Directory
