@@ -73,10 +73,101 @@ kubectl apply -f \
 https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 kubectl top nodes
-======================================================================================================"
 
 
-sudo ss -tulpn
+=================================================================================================================================="
+
+#!/bin/bash
+
+set -e
+
+echo "================================="
+echo " Update Ubuntu"
+echo "================================="
+
+sudo apt update
+sudo apt upgrade -y
+
+echo "================================="
+echo " Install K3s"
+echo "================================="
+
+curl -sfL https://get.k3s.io | sh -
+
+echo "================================="
+echo " Wait K3s"
+echo "================================="
+
+sleep 20
+
+echo "================================="
+echo " Setup kubeconfig"
+echo "================================="
+
+mkdir -p $HOME/.kube
+
+sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+
+sudo chown $USER:$USER $HOME/.kube/config
+
+echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.bashrc
+
+export KUBECONFIG=$HOME/.kube/config
+
+echo "================================="
+echo " Install Helm"
+echo "================================="
+
+curl -fsSL \
+https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 \
+| bash
+
+echo "================================="
+echo " Cluster Status"
+echo "================================="
+
+kubectl get nodes
+
+echo "================================="
+echo " System Pods"
+echo "================================="
+
+kubectl get pods -A
+
+echo "================================="
+echo " Versions"
+echo "================================="
+
+kubectl version --client
+
+helm version
+
+echo "================================="
+echo " Installation Complete"
+echo "================================="
+
+
+=============================================================================================================="
+
+Kubernetes version
+======================
+kubectl version --client
+kubectl get nodes
+
+K3s version
+===============
+sudo systemctl status k3s
+k3s --version
+
+Helm version
+=============
+helm version
+
+Helm Release
+===============
+helm list -A
+helm list -n odoo
+
 
 odoo create
 ===============
@@ -84,7 +175,6 @@ kubectl create namespace odoo
 helm install odoo . -n odoo --create-namespace
 helm lint .
 helm template .
-
 
 odoo install
 ===============
@@ -107,6 +197,12 @@ odoo/postgres -service
 kubectl get ingress -n odoo
 kubectl describe ingress -n odoo
 kubectl get svc -n odoo
+kubectl get pvc -n odoo
+kubectl get pods -n odoo -w
+
+Deployment Check
+=======================
+kubectl get deployment -n odoo
 
 
 kubectl exec -it -n odoo deploy/postgres -- psql -U postgres -d postgres
@@ -118,28 +214,34 @@ PASSWORD 'odoo';
 CREATE DATABASE odoo
 OWNER odoo;
 
+ALTER ROLE odoo
+SUPERUSER
+CREATEDB
+CREATEROLE;
+
+DROP DATABASE odoo;
+
+\c odoo
+\dt
+
+
 kubectl exec -it -n odoo deploy/postgres -- psql -U odoo -d postgres
+
+Odoo Pod Stop
+=================
+kubectl scale deployment odoo --replicas=0 -n odoo
+kubectl get pods -n odoo
+
 
 
 sudo kubectl get all -n odoo
-New
-======
-kubectl get pods -n odoo -w
-
-Check
-=========
-kubectl get pvc -n odoo
-
-
 
 Container Service
 ========================
 kubectl exec -it -n odoo deployment/odoo -- bash
 ping postgres-service
 
-Deployment Check
-=======================
-kubectl get deployment -n odoo
+
 
 
 Database Uninstall
@@ -150,7 +252,7 @@ kubectl delete namespace odoo
 kubectl delete pod -n odoo -l app=postgres
 helm install odoo . -n odoo
 
-
+sudo ss -tulpn
 
 
 

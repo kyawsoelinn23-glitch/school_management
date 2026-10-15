@@ -35,8 +35,10 @@ spec:
           mountPath: /etc/odoo/odoo.conf
           subPath: odoo.conf
 
-      volumes:
+        - name: odoo-addons
+          mountPath: /mnt/extra-addons
 
+      volumes:
       - name: odoo-data
         persistentVolumeClaim:
           claimName: odoo-pvc
@@ -44,3 +46,8 @@ spec:
       - name: odoo-config
         configMap:
           name: odoo-config
+
+      - name: custom-addons
+        hostPath:
+          path: /home/ubuntu/odoo_chart/school_management
+          type: Directory
