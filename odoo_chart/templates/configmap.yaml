@@ -8,9 +8,16 @@ metadata:
 data:
   odoo.conf: |
     [options]
+
+    admin_passwd = adminpassword
+
     db_host = postgres-service
     db_port = 5432
     db_user = odoo
-    db_password = adminpassword
+    db_password = odoo
+
+    addons_path = /mnt/extra-addons
 
     data_dir = /var/lib/odoo
+
+    proxy_mode = True

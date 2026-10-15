@@ -30,7 +30,7 @@ spec:
           value: odoo
 
         - name: POSTGRES_PASSWORD
-          value: adminpassword
+          value: odoo
 
         ports:
         - containerPort: 5432

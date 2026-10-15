@@ -1,20 +1,20 @@
 #Odoo Pods
 apiVersion: networking.k8s.io/v1
-
 kind: Ingress
 
 metadata:
   name: odoo-ingress
 
 spec:
-  ingressClassName: traefik  # SSL/TLS =>> HTTP/HTTPS
+  ingressClassName: traefik
 
   rules:
-    - host: kyawsoelinn.com
-      http:
+{{/*    - host: erp.kyawsoelinn.com*/}}
+    - http:
         paths:
           - path: /
             pathType: Prefix
+
             backend:
               service:
                 name: odoo-service

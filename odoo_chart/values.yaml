@@ -10,14 +10,18 @@ image:
 service:
   port: 80
 
-ingress:
-  enabled: true
-  host: erp.kyawsoelinn.com
-
 postgresql:
   host: postgres-service
+  port: 5432
   user: odoo
-  password: adminpassword
+  password: odoo
 
 storage:
   size: 20Gi
+
+postgresStorage:
+  size: 10Gi
+
+#ingress:
+#  enabled: true
+#  host: ""
