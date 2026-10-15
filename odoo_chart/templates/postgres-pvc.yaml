@@ -11,4 +11,4 @@ spec:
 
   resources:
     requests:
-      storage: {{ .Values.postgresStorage.size }}
+      storage: {{ .Values.storage.postgres }}
