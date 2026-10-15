@@ -95,6 +95,11 @@ Upgrade
 ============
 helm upgrade odoo . -n odoo
 
+Check
+========
+kubectl get ingress -n odoo
+kubectl describe ingress -n odoo
+
 odoo run
 ==========
 kubectl get pods -n odoo
@@ -127,12 +132,6 @@ Container Service
 ========================
 kubectl exec -it -n odoo deployment/odoo -- bash
 ping postgres-service
-
-
-
-
-
-
 
 
 
