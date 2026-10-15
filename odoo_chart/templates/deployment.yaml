@@ -23,12 +23,18 @@ spec:
 
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
-        args:
-          - server
-          - --db_host={{ .Values.postgresql.host }}
-          - --db_port=5432
-          - --db_user={{ .Values.postgresql.user }}
-          - --db_password={{ .Values.postgresql.password }}
+        env:
+          - name: HOST
+            value: postgres-service
+
+          - name: USER
+            value: odoo
+
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: odoo-secret
+                key: db-password
 
         ports:
         - containerPort: 8069
