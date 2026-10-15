@@ -22,12 +22,8 @@ spec:
     spec:
       containers:
         - name: {{ .Values.appName }}
-
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
-          args:
-            - server
-            - --config=/etc/odoo/odoo.conf
 
           ports:
             - containerPort: 8069
