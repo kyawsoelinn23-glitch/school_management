@@ -15,49 +15,44 @@ spec:
       app: {{ .Values.appName }}
 
   template:
-
     metadata:
       labels:
         app: {{ .Values.appName }}
 
     spec:
-
       containers:
+        - name: {{ .Values.appName }}
 
-      - name: {{ .Values.appName }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8069
 
-        ports:
-        - containerPort: 8069
+          env:
+            - name: HOST
+              value: "{{ .Values.postgresql.host }}"
 
-        env:
-        - name: HOST
-          value: "{{ .Values.postgresql.host }}"
+            - name: USER
+              value: "{{ .Values.postgresql.user }}"
 
-        - name: USER
-          value: "{{ .Values.postgresql.user }}"
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: odoo-secret
+                  key: db-password
 
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: odoo-secret
-              key: db-password
+          volumeMounts:
+            - name: odoo-data
+              mountPath: /var/lib/odoo
 
-        volumeMounts:
-
-        - name: odoo-data
-          mountPath: /var/lib/odoo
-
-        - name: odoo-config
-          mountPath: /etc/odoo
+            - name: odoo-config
+              mountPath: /etc/odoo
 
       volumes:
+        - name: odoo-data
+          persistentVolumeClaim:
+            claimName: odoo-pvc
 
-      - name: odoo-data
-        persistentVolumeClaim:
-          claimName: odoo-pvc
-
-      - name: odoo-config
-        configMap:
-          name: odoo-config
+        - name: odoo-config
+          configMap:
+            name: odoo-config
