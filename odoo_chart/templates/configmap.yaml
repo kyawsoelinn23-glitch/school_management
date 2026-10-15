@@ -12,3 +12,5 @@ data:
     db_port = 5432
     db_user = odoo
     db_password = adminpassword
+
+    data_dir = /var/lib/odoo
