@@ -1,0 +1,23 @@
+#Configuration
+appName: odoo
+
+replicaCount: 2
+
+image:
+  repository: odoo
+  tag: "19"
+
+service:
+  port: 80
+
+ingress:
+  enabled: true
+  host: erp.kyawsoelinn.com
+
+postgresql:
+  host: postgres-rds.amazonaws.com
+  user: odoo
+  password: adminpassword
+
+storage:
+  size: 20Gi

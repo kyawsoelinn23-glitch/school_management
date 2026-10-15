@@ -1,0 +1,16 @@
+#Odoo Pods
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: odoo-service
+
+spec:
+  type: ClusterIP
+
+  selector:
+    app: odoo
+
+  ports:
+    - port: 80
+      targetPort: 8069

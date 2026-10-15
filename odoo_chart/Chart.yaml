@@ -1,0 +1,11 @@
+apiVersion: v2
+
+name: odoo
+
+description: Odoo ERP Helm Chart
+
+type: application
+
+version: 1.0.0
+
+appVersion: "19.0"

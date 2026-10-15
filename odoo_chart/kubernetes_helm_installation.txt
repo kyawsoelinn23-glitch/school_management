@@ -1,0 +1,90 @@
+K3s (Lightweight Kubernetes)
+=================================
+Ubuntu Update
+==================
+sudo apt update
+sudo apt upgrade -y
+
+K3s Install
+===============
+curl -sfL https://get.k3s.io | sh -
+sudo systemctl status k3s
+
+kubectl Check
+===============
+sudo kubectl get nodes
+
+kubectl Alias
+=============
+echo 'alias k=kubectl' >> ~/.bashrc
+source ~/.bashrc
+k get nodes
+
+Cluster Info
+=======================
+kubectl cluster-info
+
+Test Pod
+===============
+kubectl run nginx \
+  --image=nginx \
+  --port=80
+
+kubectl get pods
+
+Create Deployment
+======================
+kubectl create deployment nginx \
+  --image=nginx
+
+kubectl get deployments
+
+Create Service
+==================
+kubectl expose deployment nginx \
+  --port=80 \
+  --type=NodePort
+
+kubectl get svc
+
+Access
+===========
+kubectl get svc
+http://SERVER_IP:32000
+
+Install Helm
+================
+curl -fsSL \
+https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 \
+| bash
+
+helm version
+
+Install Nginx Ingress
+=========================
+kubectl apply -f \
+https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+kubectl get pods -n ingress-nginx
+
+Install Metrics Server
+========================
+kubectl apply -f \
+https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+kubectl top nodes
+======================================================================================================"
+sudo ss -tulpn
+
+
+
+
+
+Helm Install (Windows)
+=========================
+winget install Helm.Helm
+helm version
+
+helm lint .
+helm template .
+#secret =>> Password
