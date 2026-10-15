@@ -10,7 +10,7 @@ spec:
   ingressClassName: traefik  # SSL/TLS =>> HTTP/HTTPS
 
   rules:
-    - host: 13.215.203.40
+    - host: kyawsoelinn.com
       http:
         paths:
           - path: /
