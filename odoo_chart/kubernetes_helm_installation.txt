@@ -74,11 +74,15 @@ https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/compo
 
 kubectl top nodes
 ======================================================================================================"
+
+
+
 sudo ss -tulpn
-
-
-
-
+sudo kubectl get pods -A
+helm lint .
+helm template .
+sudo kubectl create namespace odoo
+kubectl create namespace odoo
 
 Helm Install (Windows)
 =========================
@@ -87,4 +91,3 @@ helm version
 
 helm lint .
 helm template .
-#secret =>> Password
