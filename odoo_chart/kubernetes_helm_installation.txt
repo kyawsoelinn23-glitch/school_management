@@ -76,39 +76,52 @@ kubectl top nodes
 ======================================================================================================"
 
 
-
 sudo ss -tulpn
-sudo kubectl get pods -A
-helm lint .
-helm template .
 
 odoo create
 ===============
-helm install odoo . --create-namespace -n odoo
+kubectl create namespace odoo
+helm install odoo . -n odoo --create-namespace
+helm lint .
+helm template .
 
-sudo kubectl get all -n odoo
 
-Upgrade
-============
-helm upgrade odoo . -n odoo
+odoo install
+===============
+helm install odoo . -n odoo
 
-Check
-========
-kubectl get ingress -n odoo
-kubectl describe ingress -n odoo
+Odoo Deployment Restart
+=================================
+kubectl rollout restart deployment odoo -n odoo
 
 odoo run
 ==========
 kubectl get pods -n odoo
 
+Upgrade
+============
+helm upgrade odoo . -n odoo
+
 odoo/postgres -service
 =======================
+kubectl get ingress -n odoo
+kubectl describe ingress -n odoo
 kubectl get svc -n odoo
 
-odoo-ingress
-==============
-kubectl get ingress -n odoo
 
+kubectl exec -it -n odoo deploy/postgres -- psql -U postgres -d postgres
+
+CREATE ROLE odoo
+WITH LOGIN
+PASSWORD 'odoo';
+
+CREATE DATABASE odoo
+OWNER odoo;
+
+kubectl exec -it -n odoo deploy/postgres -- psql -U odoo -d postgres
+
+
+sudo kubectl get all -n odoo
 New
 ======
 kubectl get pods -n odoo -w
@@ -117,9 +130,7 @@ Check
 =========
 kubectl get pvc -n odoo
 
-Odoo Deployment Restart
-=================================
-kubectl rollout restart deployment odoo -n odoo
+
 
 Container Service
 ========================
