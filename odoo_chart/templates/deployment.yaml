@@ -1,6 +1,4 @@
 # Odoo Deployment
-#Odoo Pods
-
 apiVersion: apps/v1
 kind: Deployment
 
@@ -15,35 +13,25 @@ spec:
       app: {{ .Values.appName }}
 
   template:
-
     metadata:
       labels:
         app: {{ .Values.appName }}
 
     spec:
-
       containers:
-
       - name: {{ .Values.appName }}
 
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
+        args:
+          - server
+          - --db_host={{ .Values.postgresql.host }}
+          - --db_port=5432
+          - --db_user={{ .Values.postgresql.user }}
+          - --db_password={{ .Values.postgresql.password }}
+
         ports:
         - containerPort: 8069
-
-        env:
-
-        - name: HOST
-          value: "{{ .Values.postgresql.host }}"
-
-        - name: USER
-          value: "{{ .Values.postgresql.user }}"
-
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: odoo-secret
-              key: db-password
 
         volumeMounts:
         - name: odoo-data

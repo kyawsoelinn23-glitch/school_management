@@ -135,6 +135,36 @@ Deployment Check
 kubectl get deployment -n odoo
 
 
+Database Uninstall
+===================
+helm uninstall odoo -n odoo
+kubectl delete pvc postgres-pvc -n odoo
+kubectl delete pvc odoo-pvc -n odoo
+helm uninstall odoo -n odoo
+kubectl delete namespace odoo
+kubectl create namespace odoo
+helm install odoo . -n odoo
+
+
+
+
+
+
+
+
+
+
+kubectl exec -it -n odoo deploy/postgres -- psql -U odoo -d postgres -c '\l'
+
+
+
+
+
+
+
+
+
+
 
 
 
