@@ -178,7 +178,9 @@ helm template .
 
 odoo install
 ===============
+kubectl create namespace odoo
 helm install odoo . -n odoo
+helm install odoo . -n odoo --create-namespace
 
 Odoo Deployment Restart
 =================================
@@ -187,6 +189,7 @@ kubectl rollout restart deployment odoo -n odoo
 odoo run
 ==========
 kubectl get pods -n odoo
+sudo kubectl get all -n odoo
 
 Upgrade
 ============
@@ -237,9 +240,6 @@ Odoo Pod Stop
 kubectl scale deployment odoo --replicas=0 -n odoo
 kubectl get pods -n odoo
 
-
-
-sudo kubectl get all -n odoo
 
 Container Service
 ========================
